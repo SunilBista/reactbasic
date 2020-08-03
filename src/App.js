@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { CardList } from "./components/CardList/CardList";
 
@@ -8,6 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       monsters: [],
+      searchValue: ''
     };
   }
 
@@ -20,12 +20,17 @@ class App extends Component {
         })
       );
   }
-
+  handleSearchValueChange = (e) => {
+    this.setState({
+      searchValue: e.target.value,
+    });
+  }
   render() {
     const { monsters } = this.state;
 
     return (
       <div className="App">
+        <input type="search" placeholder="Enter the name to search" onChange={this.handleSearchValueChange} />
         <CardList monsters = { monsters }/>
       </div>
     );
